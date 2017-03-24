@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>QuickPhoto - Inicio</title>
+      <!-- CSS  -->
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
+   <body>
+      <header>
+         <ul id="nav-mobile" class="side-nav fixed">
+            <div class="logo" ><a id="logo-container" href="/index.html" class="brand-logo" style="font-size:2.1rem; color:#fff; text-align:center;">
+               <b>Quick</b><span class="fa fa-picture-o" aria-hidden="true"></span>Photo</a>
+            </div>
+            <li class="no-padding">
+               <ul class="collapsible collapsible-accordion">
+                  <li class="bold edit"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
+                  <li class="bold compress"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
+                  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </header>
+      <main>
+         <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+               <ul class="right hide-on-med-and-down">
+                  <li>
+                     <div class="chip" class='dropdown-button btn'  data-activates='dropdown1'>
+                        <img src="http://materializecss.com/images/yuna.jpg" alt="Contact Person">Jane Doe
+                     </div>
+                  </li>
+                  <div class='dropdown-button chip' href='#' data-constrainwidth="false" data-activates='dropdown1'><i style="line-height: 32px;" class="fa fa-sort-desc" aria-hidden="true"></i></div>
+                  <!-- Dropdown Structure -->
+                  <ul id='dropdown1' class='dropdown-content'>
+                     <li><a href="#!">Cerrar Sesión</a></li>
+                  </ul>
+               </ul>
+               <ul id="nav-mobile" class="side-nav">
+                  <li><a href="#">Inicio</a></li>
+               </ul>
+               <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+            </div>
+         </nav>
+         <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+               <div class="preloader-wrapper big active">
+                  <div class="spinner-layer spinner-blue-only center">
+                     <div class="circle-clipper left">
+                        <div class="circle"></div>
+                     </div>
+                     <div class="gap-patch">
+                        <div class="circle"></div>
+                     </div>
+                     <div class="circle-clipper right">
+                        <div class="circle"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+   </body>
+</html>
