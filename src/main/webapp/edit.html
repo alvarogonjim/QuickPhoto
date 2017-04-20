@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>QuickPhoto - Editor</title>
+      <!-- CSS  -->
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
+   <body>
+
+
+<!-- PAGINA DE EJEMPLO DEL EDITOR, LE PASAMOS UNA FOTO DE SEVILLA PUBLICA, LA EDITAMOS 
+Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
+
+<!-- Para cargar el Widget -->
+<script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
+
+
+<!-- De aqui le tenemos que pasar la imagen del Google Drive (Importante el ID y el URL) -->
+<img id="editableimage1" src="http://www.sevilla-airport.com/images/sevilla-rio.jpg"/>
+
+
+<!-- Esto es para instanciarlo -->
+<script type="text/javascript">
+
+    var featherEditor = new Aviary.Feather({
+        apiKey: '1234567',
+        onSave: function(imageID, newURL) {
+            var img = document.getElementById(imageID);
+            img.src = newURL;
+        }
+    });
+
+    function launchEditor(id, src) {
+        featherEditor.launch({
+            image: id,
+            url: src
+        });
+        return false;
+    }
+
+</script>                         
+
+<!-- Un boton que llama a la funcion del editor con la imagen que le pasamos arriba (Debe de tener el mismo ID y el URL debe ser publica) -->    
+    
+<a href="#" onclick="return launchEditor('editableimage1', 
+    'http://www.sevilla-airport.com/images/sevilla-rio.jpg');">Edita la Imagen!</a>
+
+
+</body>
+
+</html>
