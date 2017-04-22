@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.resources.TinyPngResources;
+
 public class HelloWorldServlet extends HttpServlet {
 	
 	private static final Logger log = Logger.getLogger(HelloWorldServlet.class.getName());
@@ -17,7 +19,10 @@ public class HelloWorldServlet extends HttpServlet {
 		// Sample log
 		log.log(Level.FINE, "Processing GET request");
 		 
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello world!");
+		TinyPngResources tinyPngResources = new TinyPngResources();
+		//String url = 
+		//tinyPngResources.comprimirFoto(url);
+		
+		
 	}
 }

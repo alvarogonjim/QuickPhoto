@@ -134,7 +134,13 @@
 			<artifactId>google-oauth-client-servlet</artifactId>
 			<version>${google.client.version}</version>
 		</dependency>
-
+		
+		<!-- TINY PNG -->
+		<dependency>
+			 <groupId>com.tinify</groupId>
+			  <artifactId>tinify</artifactId>
+			  <version>RELEASE</version>
+		</dependency>
 
 	</dependencies>
 
