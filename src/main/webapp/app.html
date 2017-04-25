@@ -17,10 +17,11 @@
             </div>
             <li class="no-padding">
                <ul class="collapsible collapsible-accordion">
+               	  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
+                  </li>
                   <li class="bold edit"><a href="/edit.html" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
                   <li class="bold compress"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
-                  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
-                  </li>
+                  
                </ul>
             </li>
          </ul>
@@ -69,6 +70,7 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
     var featherEditor = new Aviary.Feather({
         apiKey: '1234567',
         appendTo: 'editor',
+        language: 'es',
         onSave: function(imageID, newURL) {
             var img = document.getElementById(imageID);
             img.src = newURL;

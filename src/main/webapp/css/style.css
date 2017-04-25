@@ -34,3 +34,11 @@
 	bottom: 16px;
 	right: 16px;
 }
+
+
+/* Control CSS editor */
+#avpw_holder{
+	max-width: 100%;
+	z-index: 999;
+	margin: -1px;
+}
