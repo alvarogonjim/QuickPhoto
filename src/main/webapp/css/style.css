@@ -19,7 +19,7 @@
 }
 
 .padding50{
-	padding: 50px;
+	padding: 50px 50px 0px 50px;
 }
 
 @media screen and (min-width: 992px) {
