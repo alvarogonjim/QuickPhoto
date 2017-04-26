@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>QuickPhoto - Inicio</title>
+      <!-- CSS  -->
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
+   <body>
+      <header>
+         <ul id="nav-mobile" class="side-nav fixed">
+            <div class="logo" ><a id="logo-container" href="/index.html" class="brand-logo" style="font-size:2.1rem; color:#fff; text-align:center;">
+               <b>Quick</b><span class="fa fa-picture-o" aria-hidden="true"></span>Photo</a>
+            </div>
+            <li class="no-padding">
+               <ul class="collapsible collapsible-accordion">
+               	  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
+                  </li>
+                  <li class="bold edit"><a href="/edit.html" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
+                  <li class="bold compress"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
+                  
+               </ul>
+            </li>
+         </ul>
+      </header>
+      <main>
+         <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+               <ul class="right hide-on-med-and-down">
+                  <li>
+                     <div class="chip" class='dropdown-button btn'  data-activates='dropdown1'>
+                        <img src="http://materializecss.com/images/yuna.jpg" alt="Contact Person">Jane Doe
+                     </div>
+                  </li>
+                  <div class='dropdown-button chip' href='#' data-constrainwidth="false" data-activates='dropdown1'><i style="line-height: 32px;" class="fa fa-sort-desc" aria-hidden="true"></i></div>
+                  <!-- Dropdown Structure -->
+                  <ul id='dropdown1' class='dropdown-content'>
+                     <li><a href="#!">Cerrar Sesión</a></li>
+                  </ul>
+               </ul>
+               <ul id="nav-mobile" class="side-nav">
+                  <li><a href="#">Inicio</a></li>
+               </ul>
+               <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+            </div>
+         </nav>
+    		<!-- Contenido para incrustar API -->
+         	<a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
+    'http://www.sevilla-airport.com/images/sevilla-rio.jpg');"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
+            
+            <div id="editor" class="aviary-app-container">
+            <div class="padding50">
+            <h2 id="quickphoto" class="header">Sube tus imágenes</h2>
+            <p class="caption">
+               Selecciona una o un conjunto de imágenes que desees editar, la subiremos a tu cuenta de <i>Google Drive</i> en la carpeta dedicada QuickPhoto. Posteriormente podrás editar y comprimir una a una.
+            </p>
+            </div>
+            
+            <div class="row" style="text-align: center;">
+        <div class="col s12 m4 offset-m4">
+          <div class="card grey lighten-3">
+            <div class="card-content upload_t">
+              <p class="card-title"><i class="fa fa-google fa-lg" aria-hidden="true"></i> Google Drive Estadisticas</p>
+            </div>
+            <div class="card-action">
+            <span class="upload_t"> 16GB totales</span>
+               <div class="progress  cyan lighten-4">
+      <div class="determinate red" style="width: 70% "></div>
+      <div class="determinate upload" style="width: 60% "></div>
+  </div>
+
+<div class="chip upload_t">
+    9,6GB<span style="color: rgba(0,0,0,0.87);"> Archivos</span>
+  </div>
+        <div class="chip red-text">
+    1,6GB<span style="color: rgba(0,0,0,0.87);"> QuickPhoto</span>
+  </div>
+        <div class="chip cyan-text">
+    4,8GB<span style="color: rgba(0,0,0,0.87);"> Libre</span>
+  </div>
+        
+        
+            </div>
+          </div>
+        </div>
+      </div>
+            
+            
+	          <div class="row" style="text-align: center;">
+        <div class="col s12 m6 offset-m3">
+          <div class="card grey lighten-3">
+            <div class="card-content upload_t">
+              <span style="text-shadow: -1px -1px 1px #0a7c9e;" ><i class="fa fa-arrow-right fa-5x" aria-hidden="true"></i><i class="fa fa-file-image-o fa-5x" aria-hidden="true"></i></span>
+              <p class="card-title"><b>Suelta tus arhivos .png o .jpg aquí!</b></p>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+			</div>
+      </main>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+   </body>
+</html>

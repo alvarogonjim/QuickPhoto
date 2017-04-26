@@ -8586,36 +8586,6 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 }
 
 
-/* own code */
-.caption{
-	font-size: 1.25rem;
-	font-weight: 300;
-	margin-bottom: 30px;
-	text-align: justify;
-}
 
-.header{
-	font-weight: 300;
-	color: #0bc1f7; !important
-}
-
-.edit_t{
-	color: #F82463;
-}
-.compress_t{
-	color: #C4B81C;
-}
-.upload_t{
-	color: #0BC1F7;
-}
-.edit{
-	background-color: #F82463;
-}
-.compress{
-	background-color: #C4B81C;
-}
-.upload{
-	background-color: #0BC1F7;
-}
 
 
