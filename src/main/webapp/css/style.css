@@ -37,7 +37,7 @@
 
 
 /* Control CSS editor */
-#avpw_holder{
+.avpw_is_embed #avpw_controls{
 	max-width: 100%;
 	z-index: 999;
 	margin: -1px;
