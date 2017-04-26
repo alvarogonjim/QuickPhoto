@@ -15,7 +15,43 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	
+   
+	<servlet>        
+    <servlet-name>GoogleDriveListingServlet</servlet-name>
+    <servlet-class>aiss.controller.DriveFileListController</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleDriveListingServlet</servlet-name>
+    <url-pattern>/googleDriveListing</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>        
+    <servlet-name>DriveFileDelete</servlet-name>
+    <servlet-class>aiss.controller.DriveFileDelete</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DriveFileDelete</servlet-name>
+    <url-pattern>/GoogleDriveFileDelete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>        
+    <servlet-name>DriveFileUpdate</servlet-name>
+    <servlet-class>aiss.controller.DriveFileUpdate</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DriveFileUpdate</servlet-name>
+    <url-pattern>/GoogleDriveFileUpdate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>        
+    <servlet-name>GoogleDriveFileNew</servlet-name>
+  	<servlet-class>aiss.controller.DriveFileNew</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleDriveFileNew</servlet-name>
+     <url-pattern>/GoogleDriveFileNew</url-pattern>
+  </servlet-mapping>
+  
 	<!--  OAUTH SERVLETS 
   
   	For each OAuth 2.0 service, you need to create two servlets: one for the initiation 
@@ -34,6 +70,43 @@
   			initiation servlet could be	/AuthController/X, and the url-pattern of the callback
   			 servlet must be /oauth2callback/X.
   -->
+  
+    <!--    Google Drive  -->
+  
+  <servlet>
+    <description></description>
+    <display-name>GoogleDriveAuthController</display-name>
+    <servlet-name>GoogleDriveAuthController</servlet-name>
+    <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>GoogleDrive</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleDriveAuthController</servlet-name>
+    <url-pattern>/AuthController/GoogleDrive</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GoogleDriveOAuth2Callback</display-name>
+    <servlet-name>GoogleDriveOAuth2Callback</servlet-name>
+    <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>GoogleDrive</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>onSuccess</param-name>
+    	<param-value>redirect:/googleDriveListing</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleDriveOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/GoogleDrive</url-pattern>
+  </servlet-mapping>
+  
+  
   <!--    Spotify example -->
   
   <!--  
