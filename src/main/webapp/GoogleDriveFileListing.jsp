@@ -19,10 +19,10 @@
 				<td><c:out value="${file.fileSize}"/></td>
 				<td><c:out value="${file.modifiedDate}"/></td>
 				<td>
-				  <a href="GoogleDriveFileUpdate?id=${file.id}"><img src="./images/edit.png" width="30px"></a>
+				  <a href="GoogleDriveFileUpdate?id=${file.id}">editar</a>
 				</td>
 				<td>
-					<a href="GoogleDriveFileDelete?id=${file.id}"><img src="./images/delete.png" width="30px"></a>
+					<a href="GoogleDriveFileDelete?id=${file.id}">borrar</a>
 				</td>
 				</tr>
 			</c:forEach>			
