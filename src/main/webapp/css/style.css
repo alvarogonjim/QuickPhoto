@@ -52,6 +52,17 @@
 	text-align: justify;
 }
 
+/* Edita */
+.thumb{
+	background-attachment: scroll;
+background-color: rgba(0,0,0,0.2);
+background-size: auto 200px;
+background-position: center center;
+background-repeat: no-repeat;
+ border-bottom: 1px solid rgba(0,0,0,0.01);
+	
+}
+
 
 /* Colores */
 

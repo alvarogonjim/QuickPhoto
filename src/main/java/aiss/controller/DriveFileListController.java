@@ -22,7 +22,7 @@ public class DriveFileListController extends HttpServlet {
 			Files files=gdResource.getFiles();
 			if(files!=null){
 				req.setAttribute("files", files);
-				req.getRequestDispatcher("/GoogleDriveFileListing.jsp").forward(req,resp);
+				req.getRequestDispatcher("/edit2.jsp").forward(req,resp);
 			}else{
 				log.info("The files returned are null... probably your token has experied. Redirecting to OAuth servlet.");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);
