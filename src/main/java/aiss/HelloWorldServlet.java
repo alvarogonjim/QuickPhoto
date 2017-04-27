@@ -1,7 +1,7 @@
 package aiss;
 
 import java.io.IOException;
-import java.util.logging.Level;
+import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -15,13 +15,8 @@ public class HelloWorldServlet extends HttpServlet {
 	private static final Logger log = Logger.getLogger(HelloWorldServlet.class.getName());
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
-		// Sample log
-		log.log(Level.FINE, "Processing GET request");
-		 
-		TinyPngResources tinyPngResources = new TinyPngResources();
-		//String url = 
-		//tinyPngResources.comprimirFoto(url);
+		TinyPngResources tiny = new TinyPngResources();
+		tiny.comprimirFoto("http://www.sevilla-airport.com/images/sevilla-rio.jpg");
 		
 		
 	}

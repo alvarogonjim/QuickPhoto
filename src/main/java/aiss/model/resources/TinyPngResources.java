@@ -16,7 +16,7 @@ public class TinyPngResources {
 	}
 
 	public int comprimirFoto(String url){
-	Tinify.setKey("ponerAquiAPIKEY");
+	Tinify.setKey("ZbGbVDVmQHjZSFcDRLPcmUBMI29bQTCC");
 	Source source;
 	try {
 		//Tomamos la imagen de una url que le pasamos por parametro y la comprimimos
