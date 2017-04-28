@@ -1,39 +1,45 @@
 package aiss.model.resources;
 
-import java.io.IOException;
+import org.restlet.data.ChallengeScheme;
+import org.restlet.data.MediaType;
+import org.restlet.data.Metadata;
+import org.restlet.engine.Engine;
+import org.restlet.ext.jackson.JacksonConverter;
+import org.restlet.resource.ClientResource;
+import org.restlet.resource.ResourceException;
 
-import com.tinify.Source;
-import com.tinify.Tinify;
+import quickphoto.model.Image;
+import quickphoto.model.ImageUrl;
 
 public class TinyPngResources {
 
-	
-	
-	
+	private String uri = "http://api.tinify.com/shrink";
+	private String key = "Basic YXBpOlpiR2JWRFZtUUhqWlNGY0RSTFBjbVVCTUkyOWJRVEND";
+
 	public TinyPngResources() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public int comprimirFoto(String url){
-	Tinify.setKey("ZbGbVDVmQHjZSFcDRLPcmUBMI29bQTCC");
-	Source source;
-	try {
-		//Tomamos la imagen de una url que le pasamos por parametro y la comprimimos
-		source = Tinify.fromUrl(url);
-		System.out.print("Se ha enviado la imagen");
-		//El resultado lo pasamos otra vez 
-		source.toFile("optimized.jpg");
-		System.out.println("Se ha guardado la imagen");
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	
+	public Image comprimirFotoByUrl(ImageUrl imageUrl) {
+
+		ClientResource cr = null;
+		Image res = null;
+		try {
+
+			cr = new ClientResource(uri);
+			cr.setChallengeResponse(ChallengeScheme.HTTP_BASIC, "api", "ZbGbVDVmQHjZSFcDRLPcmUBMI29bQTCC");
+			cr.accept(MediaType.APPLICATION_JSON);
+			cr.setEntityBuffering(true);
+			res = cr.post(imageUrl, Image.class);
+			
+			
+		} catch (ResourceException re) {
+			System.err.println("Error when post the image: " + cr.getResponse().getStatus());
+			throw re;
+		}
+
+		return res;
 	}
-	
-	return Tinify.compressionCount();
-	
-	}
-	
-	
+
 }
