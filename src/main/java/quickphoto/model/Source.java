@@ -1,11 +1,18 @@
 package quickphoto.model;
 
-public class Source {
+import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Source implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String url;
 
 	public Source(String url) {
-		super();
 		this.url = url;
 	}
 	
