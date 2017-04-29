@@ -28,7 +28,12 @@ public class HelloWorldServlet extends HttpServlet {
 		TinyPngResources tiny = new TinyPngResources();
 		Image im = tiny.comprimirFotoByUrl(new ImageUrl(s));
 		response.setStatus(HttpServletResponse.SC_OK);
-		System.out.println(im);
+		log.log(Level.FINE, "Processing GET request");
+		response.setContentType("text/html");
+		response.getWriter().println("<b>INPUT:</b><br><img src=\"http://contratodeobras.com/images/fondo-azul-jpg.jpg\"/>");
+		response.getWriter().println("Propertiers: " + im.getInput());
+		response.getWriter().println("\n\n<b>OUTPUT:</b><br><img src=\"" + im.getOutput().getUrl() + "\"/>");
+		response.getWriter().println("Propertiers: " + im.getOutput());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

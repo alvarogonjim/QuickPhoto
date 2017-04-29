@@ -1,6 +1,6 @@
 <%@include file="includes/app/head.jsp"%>
 <%@include file="includes/app/body-header.jsp"%>
-<main>
+<main> 
    <%@include file="includes/app/body-nav.jsp"%>
    <!-- Contenido para incrustar API -->
    <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
