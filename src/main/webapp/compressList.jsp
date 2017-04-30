@@ -7,8 +7,10 @@
    <%@include file="includes/app/descriptions/select-desc.jsp"%>
 
    <div class="row" style="padding: 0px 50px 0px 50px;">
+      
       <c:forEach items="${requestScope.files.items}" var="file">
          <c:if test="${fn:contains(file.mimeType, 'image/')}">
+         <form action="/hello" method="post" enctype="multipart/form-data">
             <div class="col s12 m6 l4 xl2">
                <div class="card">
                   <div class="card-image" style="height: 200px">
@@ -17,7 +19,7 @@
                         <div class="chip">${file.fileSize} B <i class="fa fa-times" aria-hidden="true"></i></div>
                         <div class="chip">${file.modifiedDate} <i class="fa fa-times" aria-hidden="true"></i></div>
                      </span>
-                     <a class="btn-floating halfway-fab waves-effect waves-light lime" href="?id=${file.id}&src=${file.webContentLink}">
+                     <a class="btn-floating halfway-fab waves-effect waves-light lime" onclick="$(this).closest('form').submit()">
                      	<i class="fa fa-compress" aria-hidden="true"></i>
                      </a>
                   </div>
@@ -26,6 +28,8 @@
                   </div>
                </div>
             </div>
+         	<input type="hidden" name="img2Compress2" value="${file.selfLink}>"></input>
+              </form>
          </c:if>
       </c:forEach>
    </div>

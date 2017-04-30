@@ -24,13 +24,16 @@ public class HelloWorldServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// Create image
-		Source s = new Source("http://contratodeobras.com/images/fondo-azul-jpg.jpg");
+		String url = "https://www.googleapis.com/drive/v2/files/0B2bw7KQz4gI-WGZlSFFCU3Q4WUE";
+		System.out.println("URL : " + url);
+		Source s = new Source(url);
+		
 		TinyPngResources tiny = new TinyPngResources();
 		Image im = tiny.comprimirFotoByUrl(new ImageUrl(s));
 		response.setStatus(HttpServletResponse.SC_OK);
 		log.log(Level.FINE, "Processing GET request");
-		response.setContentType("text/html");
-		response.getWriter().println("<b>INPUT:</b><br><img src=\"http://contratodeobras.com/images/fondo-azul-jpg.jpg\"/>");
+
+		response.getWriter().println("<b>INPUT:</b><br><img src=\""+ url +"\"/>");
 		response.getWriter().println("Propertiers: " + im.getInput());
 		response.getWriter().println("\n\n<b>OUTPUT:</b><br><img src=\"" + im.getOutput().getUrl() + "\"/>");
 		response.getWriter().println("Propertiers: " + im.getOutput());
