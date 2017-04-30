@@ -28,7 +28,7 @@
                   </div>
                </div>
             </div>
-         	<input type="hidden" name="img2Compress2" value="${file.selfLink}>"></input>
+         	<input type="hidden" name="img2Compress" value="${file.selfLink}>"></input>
               </form>
          </c:if>
       </c:forEach>

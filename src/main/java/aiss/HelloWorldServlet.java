@@ -24,7 +24,7 @@ public class HelloWorldServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// Create image
-		String url = "https://www.googleapis.com/drive/v2/files/0B2bw7KQz4gI-WGZlSFFCU3Q4WUE";
+		String url = "http://www.rumbo.es/hoteles/img/espana/sevilla.jpg";
 		System.out.println("URL : " + url);
 		Source s = new Source(url);
 		
