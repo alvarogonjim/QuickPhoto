@@ -5,10 +5,10 @@
             </div>
             <li class="no-padding">
                <ul class="collapsible collapsible-accordion">
-               	  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
+               	  <li class="bold upload"><a href="/upload" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
                   </li>
-                  <li class="bold edit"><a href="/edit.html" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
-                  <li class="bold compress"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
+                  <li class="bold edit"><a href="/select" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
+                  <li class="bold compress"><a href="/compressList" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
                   
                </ul>
             </li>

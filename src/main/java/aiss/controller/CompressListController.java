@@ -12,8 +12,8 @@ import aiss.HelloWorldServlet;
 import aiss.model.google.drive.Files;
 import aiss.model.resources.GoogleDriveResource;
 
-public class DriveFileListController extends HttpServlet {
-	private static final Logger log = Logger.getLogger(DriveFileListController.class.getName());
+public class CompressListController extends HttpServlet {
+	private static final Logger log = Logger.getLogger(CompressListController.class.getName());
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
@@ -22,7 +22,7 @@ public class DriveFileListController extends HttpServlet {
 			Files files=gdResource.getFiles();
 			if(files!=null){
 				req.setAttribute("files", files);
-				req.getRequestDispatcher("/edit2.jsp").forward(req,resp);
+				req.getRequestDispatcher("/compressList.jsp").forward(req,resp);
 			}else{
 				log.info("The files returned are null... probably your token has experied. Redirecting to OAuth servlet.");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);

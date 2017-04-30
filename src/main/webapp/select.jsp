@@ -21,7 +21,7 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
   
 <!-- De aqui le tenemos que pasar la imagen del Google Drive (Importante el ID y el URL) -->
 
-<img id="<%= request.getParameter("id")  %>" src="<%= request.getParameter("src")  %>"/>
+<img class="modify" id="modify" src="" style="display:none;"/>
  
 
 <!-- Esto es para instanciarlo -->
@@ -38,16 +38,19 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
     });
 
     function launchEditor(id, src) {
+    	 var img2 = document.getElementsByClassName("modify");
+         img2.id = id;
+         img2.src = src;
         featherEditor.launch({
             image: id,
             url: src
         });
+       
+        alert(id + " - " + src);
         return false;
     }
 
-</script>    
-<div style="display: none;" onLoad="return launchEditor('<%= request.getParameter("id")  %>', 
-    '<%= request.getParameter("src")  %>');"></div>                  
+</script>                  
    <!--  FIN EDITOR -->
    
    
@@ -62,7 +65,9 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
                         <div class="chip">${file.fileSize} B <i class="fa fa-times" aria-hidden="true"></i></div>
                         <div class="chip">${file.modifiedDate} <i class="fa fa-times" aria-hidden="true"></i></div>
                      </span>
-                     <a class="btn-floating halfway-fab waves-effect waves-light pink" href="?id=${file.id}&src=${file.webContentLink}">
+                     <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${ file.thumbnailLink }');">
+                     <!--  href="?id=${file.id}&src=${file.webContentLink}" -->
+                     
                      	<i class="fa fa-pencil" aria-hidden="true"></i>
                      </a>
                   </div>
