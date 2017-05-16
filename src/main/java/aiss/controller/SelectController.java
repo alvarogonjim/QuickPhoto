@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.HelloWorldServlet;
+import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
 import aiss.model.resources.GoogleDriveResource;
 
@@ -20,8 +21,17 @@ public class SelectController extends HttpServlet {
 		if(accessToken!=null && !"".equals(accessToken)){
 			GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 			Files files=gdResource.getFiles();
+			String h = "";
+			for(FileItem f : files.getItems())
+			{
+				if(f.getMimeType().contains("image/")){
+					h = f.toString();
+					break;
+				}
+			}
 			if(files!=null){
 				req.setAttribute("files", files);
+				req.setAttribute("string0", h); //borrar
 				req.getRequestDispatcher("/select.jsp").forward(req,resp);
 			}else{
 				log.info("The files returned are null... probably your token has experied. Redirecting to OAuth servlet.");

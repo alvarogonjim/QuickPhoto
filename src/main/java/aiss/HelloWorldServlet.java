@@ -26,7 +26,7 @@ public class HelloWorldServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// Create image
-		String url = "http://www.lavozdegalicia.es/sc/x/default/2015/04/21/00121429642982387753453/Foto/efe_20150421_180454102.jpg";
+		String url = request.getParameter("img2compress");
 		System.out.println("URL : " + url);
 		Source s = new Source(url);
 		

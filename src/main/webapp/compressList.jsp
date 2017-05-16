@@ -10,7 +10,7 @@
       
       <c:forEach items="${requestScope.files.items}" var="file">
          <c:if test="${fn:contains(file.mimeType, 'image/')}">
-         <form action="/hello" method="post" enctype="multipart/form-data">
+         <form action="/hello" method="post">
             <div class="col s12 m6 l4 xl2">
                <div class="card">
                   <div class="card-image" style="height: 200px">
@@ -28,7 +28,9 @@
                   </div>
                </div>
             </div>
-         	<input type="hidden" name="img2Compress" value="${file.selfLink}>"></input>
+         	<input type="hidden" name="img2compress" value="${file.thumbnailLink}"></input>
+         	<!-- La url que devuelve es demasiado larga y creo que por eso falla
+         	 <input type="hidden" name="img2compress" value="${fn:substringBefore(file.downloadUrl, '?')}"></input>  -->
               </form>
          </c:if>
       </c:forEach>

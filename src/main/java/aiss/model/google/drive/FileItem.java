@@ -344,4 +344,22 @@ public class FileItem implements Serializable
         this.spaces = spaces;
     }
 
+	@Override
+	public String toString() {
+		return "FileItem:\n[\nkind=" + kind + ", \nid=" + id + ", \netag=" + etag + ", \nselfLink=" + selfLink
+				+ ", \nwebContentLink=" + webContentLink + ", \nalternateLink=" + alternateLink + ", \nembedLink="
+				+ embedLink + ", \niconLink=" + iconLink + ", \nthumbnailLink=" + thumbnailLink + ", \ntitle=" + title
+				+ ", \nmimeType=" + mimeType + ", \nlabels=" + labels + ", \ncreatedDate=" + createdDate
+				+ ", \nmodifiedDate=" + modifiedDate + ", \nmarkedViewedByMeDate=" + markedViewedByMeDate
+				+ ", \nversion=" + version + ", \nparents=" + parents + ", \ndownloadUrl=" + downloadUrl
+				+ ", \nuserPermission=" + userPermission + ", \noriginalFilename=" + originalFilename
+				+ ", \nfileExtension=" + fileExtension + ", \nmd5Checksum=" + md5Checksum + ", \nfileSize=" + fileSize
+				+ ", \nquotaBytesUsed=" + quotaBytesUsed + ", \nownerNames=" + ownerNames + ", \nowners=" + owners
+				+ ", \nlastModifyingUserName=" + lastModifyingUserName + ", \nlastModifyingUser=" + lastModifyingUser
+				+ ", \ncapabilities=" + capabilities + ", \neditable=" + editable + ", \ncopyable=" + copyable
+				+ ", \nwritersCanShare=" + writersCanShare + ", \nshared=" + shared + ", \nexplicitlyTrashed="
+				+ explicitlyTrashed + ", \nappDataContents=" + appDataContents + ", \nheadRevisionId=" + headRevisionId
+				+ ", \nspaces=" + spaces + "\n]";
+	}
+
 }
