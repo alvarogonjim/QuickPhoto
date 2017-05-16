@@ -20,8 +20,7 @@
                         <div class="chip">${file.modifiedDate} <i class="fa fa-times" aria-hidden="true"></i></div>
                      </span>    
                      <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${ file.webContentLink }');">      
-                     	<i class="fa fa-pencil" aria-hidden="true"></i>
-                     </a>
+
                   </div>
                   <div class="card-content">
                      <p>${file.title}</p>
