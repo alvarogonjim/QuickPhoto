@@ -8,7 +8,7 @@
 
    <div class="row" style="padding: 0px 50px 0px 50px;">
       
-      <c:forEach items="${requestScope.files.items}" var="file">
+      <c:forEach items="${requestScope.files}" var="file">
          <c:if test="${fn:contains(file.mimeType, 'image/')}">
          <form action="/hello" method="post">
             <div class="col s12 m6 l4 xl2">

@@ -2,6 +2,7 @@
 package aiss.model.google.drive;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -68,6 +69,24 @@ public class Files implements Serializable
 
     public List<FileItem> getItems() {
         return items;
+    }
+    
+    public List<String> getFoldersIdByName(String folderName) {
+    	List<String> res = new ArrayList<String>();
+    	for(FileItem i : new ArrayList<FileItem>(items))
+    		if(i.getMimeType().contains("application/vnd.google-apps.folder") && i.getTitle().equals(folderName))
+    			res.add(i.getId());
+    	
+    	return res;
+    }
+    
+    public List<FileItem> getFilesByMimeType(String MimeType) {
+    	List<FileItem> res = new ArrayList<FileItem>();
+    	for(FileItem i : new ArrayList<FileItem>(items))
+    		if(i.getMimeType().contains(MimeType))
+    			res.add(i);
+    	
+    	return res;
     }
 
     public void setItems(List<FileItem> items) {
