@@ -2,9 +2,6 @@ package aiss.model.resources;
 
 import org.restlet.data.ChallengeScheme;
 import org.restlet.data.MediaType;
-import org.restlet.data.Metadata;
-import org.restlet.engine.Engine;
-import org.restlet.ext.jackson.JacksonConverter;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
