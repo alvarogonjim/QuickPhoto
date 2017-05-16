@@ -28,7 +28,7 @@
                   </div>
                </div>
             </div>
-         	<input type="hidden" name="img2compress" value="${file.thumbnailLink}"></input>
+         	<input type="hidden" name="img2compress" value="${file.webContentLink}"></input>
          	<!-- La url que devuelve es demasiado larga y creo que por eso falla
          	 <input type="hidden" name="img2compress" value="${fn:substringBefore(file.downloadUrl, '?')}"></input>  -->
               </form>

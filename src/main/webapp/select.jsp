@@ -19,7 +19,7 @@
                         <div class="chip">${file.fileSize} B <i class="fa fa-times" aria-hidden="true"></i></div>
                         <div class="chip">${file.modifiedDate} <i class="fa fa-times" aria-hidden="true"></i></div>
                      </span>    
-                     <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${fn:substringBefore(file.downloadUrl, '?')}');">      
+                     <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${ file.webContentLink }');">      
                      	<i class="fa fa-pencil" aria-hidden="true"></i>
                      </a>
                   </div>
