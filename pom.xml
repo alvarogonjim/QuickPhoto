@@ -18,6 +18,8 @@
 		</repository>
 	</repositories>
 
+
+
 	<properties>
 		<appengine.version>1.9.46</appengine.version>	<!-- AppEngine version -->
 		<servlet.version>2.5</servlet.version>	<!-- Servlet version -->
@@ -43,6 +45,13 @@
 	<dependencies>
 		<!-- Compile/runtime dependencies -->
 		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+		
+		  <dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.22.0</version>
+   </dependency>
+		
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-1.0-sdk</artifactId>

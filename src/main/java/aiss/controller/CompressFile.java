@@ -1,4 +1,4 @@
-package aiss;
+package aiss.controller;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,13 +14,13 @@ import quickphoto.model.Image;
 import quickphoto.model.ImageUrl;
 import quickphoto.model.Source;
 
-public class HelloWorldServlet extends HttpServlet {
+public class CompressFile extends HttpServlet {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5104372551543923390L;
-	private static final Logger log = Logger.getLogger(HelloWorldServlet.class.getName());
+	private static final Logger log = Logger.getLogger(CompressFile.class.getName());
 	    
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +39,8 @@ public class HelloWorldServlet extends HttpServlet {
 		response.getWriter().println("Propertiers: " + im.getInput());
 		response.getWriter().println("\n\n<b>OUTPUT:</b><br><img src=\"" + im.getOutput().getUrl() + "\"/>");
 		response.getWriter().println("Propertiers: " + im.getOutput());
+		/*Enviarla para subirla
+		request.getRequestDispatcher("/GoogleDriveFileNew").forward(request,response);*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

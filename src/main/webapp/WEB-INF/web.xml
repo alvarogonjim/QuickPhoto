@@ -4,12 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<servlet>
-		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>aiss.HelloWorldServlet</servlet-class>
+		<servlet-name>CompressFile</servlet-name>
+		<servlet-class>aiss.controller.CompressFile</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>HelloWorld</servlet-name>
-		<url-pattern>/hello</url-pattern>
+		<servlet-name>CompressFile</servlet-name>
+		<url-pattern>/compress</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

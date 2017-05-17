@@ -22,14 +22,14 @@ public class DriveFileDelete extends HttpServlet {
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 				gdResource.deleteFile(id);
 				log.info("File with id '"+id+"' deleted!");
-				req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
+				req.getRequestDispatcher("/select").forward(req,resp);
 			}else{
 				log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);
 			}
 		}else{
 			log.warning("Invalid id for delete!");
-			req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
+			req.getRequestDispatcher("/select").forward(req,resp);
 		}
 	}
 }
