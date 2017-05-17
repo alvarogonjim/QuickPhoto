@@ -34,15 +34,18 @@
       </div>
       <div class="row" style="text-align: center;">
          <div class="col s12 m6 offset-m3">
+         <form action="/GoogleDriveFileNew" method="post" enctype="multipart/form-data">
             <div class="card grey lighten-3">
                <div class="card-content upload_t">
-                  <p class="card-title"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i><i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i><br>Suelta tus arhivos .png o .jpg aquí!</p>
+               <input type="file" name="fileToUpload" id="fileToUpload">
                </div>
                <div class="card-action">
-                  <a class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
+                  <a onclick="$(this).closest('form').submit()" class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
+                  
                </div>
             </div>
          </div>
+         </form>
       </div>
    </div>
 </main>
