@@ -1,12 +1,12 @@
 <%@include file="includes/app/head.jsp"%>
 <%@include file="includes/app/body-header.jsp"%>
-<main> 
+<main>
    <%@include file="includes/app/body-nav.jsp"%>
    <!-- Contenido para incrustar API -->
-   <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
+   <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1',
       'http://www.sevilla-airport.com/images/sevilla-rio.jpg');"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
    <div id="editor" class="aviary-app-container">
-   		<%@include file="includes/app/descriptions/upload-desc.jsp"%>
+        <%@include file="includes/app/descriptions/upload-desc.jsp"%>
       <div class="row" style="text-align: center;">
          <div class="col s10 offset-s1">
             <div class="card grey lighten-3">
@@ -34,16 +34,39 @@
       </div>
       <div class="row" style="text-align: center;">
          <div class="col s12 m6 offset-m3">
+         <form action="/GoogleDriveFileNew" method="post" id="uploadfile">
             <div class="card grey lighten-3">
                <div class="card-content upload_t">
-                  <p class="card-title"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i><i class="fa fa-file-image-o fa-2x" aria-hidden="true"></i><br>Suelta tus arhivos .png o .jpg aquí!</p>
+               <input type="file"  id="file">
+               <input type="hidden" value="" id="bytes" name="bytes">
                </div>
                <div class="card-action">
-                  <a class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
+                  <a href="#" onclick="readBytes()" class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
+                 
                </div>
             </div>
          </div>
+         </form>
       </div>
    </div>
 </main>
+<script type="text/javascript">
+function readBytes()
+{
+    var file = document.getElementById('file');
+    if(file.files.length)
+    {
+        var reader = new FileReader();
+        reader.onload = function(e)
+        {
+            document.getElementById("bytes").value = e.target.result;
+            alert(document.getElementById("bytes").value);
+        };
+        reader.readAsBinaryString(file.files[0]);
+   
+    }
+    document.getElementById("uploadfile").submit();
+   
+}
+</script>
 <%@include file="includes/app/footer.jsp"%>
