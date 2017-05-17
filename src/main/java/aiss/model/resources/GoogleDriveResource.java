@@ -15,6 +15,7 @@ import org.restlet.util.Series;
 
 import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
+import aiss.model.google.drive.UserPermission;
 
 public class GoogleDriveResource {
 	private static final Logger log=Logger.getLogger(GoogleDriveResource.class.getName());
@@ -44,7 +45,6 @@ public class GoogleDriveResource {
 		}
 
 		return files;
-
 	}
 
 	public FileItem getFile(String id) {
@@ -93,6 +93,25 @@ public class GoogleDriveResource {
 			result = false;
 		}
 		return result;
+	}
+	
+	public boolean updatePermissions(String id) {
+		ClientResource cr = null;
+		boolean res = false;
+		try {
+			
+			UserPermission up = new UserPermission();
+			up.setRole("writer");
+			up.setType("anyone");
+			FileItem file = this.getFile(id);
+			cr = new ClientResource(file.getSelfLink() + "/permissions/?access_token=" + access_token);
+			file.setUserPermission(up);
+			UserPermission newFile = cr.post(up, UserPermission.class);
+			res = true;
+		} catch (ResourceException re) {
+			log.warning("Error when inserting file: " + cr.getResponse().getStatus());
+		}
+		return res;
 	}
 
 	public boolean deleteFile(String id) {

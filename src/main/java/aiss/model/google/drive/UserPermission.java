@@ -64,4 +64,10 @@ public class UserPermission implements Serializable
         this.type = type;
     }
 
+	@Override
+	public String toString() {
+		return "UserPermission:\n[\nkind=" + kind + ", \netag=" + etag + ", \nid=" + id + ", \nselfLink=" + selfLink
+				+ ", \nrole=" + role + ", \ntype=" + type + "\n]";
+	}
+
 }

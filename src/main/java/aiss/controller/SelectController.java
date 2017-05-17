@@ -24,29 +24,16 @@ public class SelectController extends HttpServlet {
 		if(accessToken!=null && !"".equals(accessToken)){
 			GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 			
-			
 			Files files_0 = gdResource.getFiles(); //Files 
-			List<String> foldersId = files_0.getFoldersIdByName("alvarogay"); //Lista de IDs con el nombre QuickPhoto
 			List<FileItem> files = new ArrayList<FileItem>(); //Array para rellenar y enviar al jsp
-			Parent p = new Parent();
-			
-			 System.out.println("size foldersID: " + foldersId.size() );
-			if(foldersId.size() >= 1)
-			{
-			String quickPhotoIDFolder = foldersId.get(0);
-			for(FileItem i : files_0.getItems()) //para todo elemento
-				for(Parent papa : i.getParents())
-					if(papa.getId().equals(quickPhotoIDFolder)) //que tenga un padre/carpeta con la id quickPhotoIDFolder
-						files.add(i); //lo unico que se me ocurre es obtenerlo asi, 
-			
-			//crucemos los dedos, el segundo seria lo suyo
-			} else {
-			System.out.println("TO DO: crear carpeta QuickPhoto con share=true");
-			}
-				
-			
-			
-			
+
+			String QPfolderID = createFolder("QuickPhoto", gdResource);
+			System.out.println("FOLDER ID: " + QPfolderID);
+			for(FileItem i : files_0.getItems())
+				for(Parent pa : i.getParents())
+					if(pa.getId().equals(QPfolderID))
+						files.add(i);
+
 			if(files!=null){
 				req.setAttribute("files", files);
 				req.getRequestDispatcher("/select.jsp").forward(req,resp);
@@ -63,24 +50,25 @@ public class SelectController extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		doGet(req,resp);
 	}
-	
-	 private static void printFilesInFolder(Drive service, String folderId)
-		      throws IOException {
-		    Children.List request = service.children().list(folderId);
 
-		    do {
-		      try {
-		        ChildList children = request.execute();
-
-		        for (ChildReference child : children.getItems()) {
-		          System.out.println("File Id: " + child.getId());
-		        }
-		        request.setPageToken(children.getNextPageToken());
-		      } catch (IOException e) {
-		        System.out.println("An error occurred: " + e);
-		        request.setPageToken(null);
-		      }
-		    } while (request.getPageToken() != null &&
-		             request.getPageToken().length() > 0);
-		  }
+	public String createFolder(String folderName, GoogleDriveResource gdResource)
+	{
+		List<String> ids = gdResource.getFiles().getFoldersIdByName(folderName);
+		int sameName = ids.size();
+		String res = "";
+		if(sameName > 1)
+			log.warning("There are " + sameName + " folders with title: '" + folderName +"'. There should only be one.");
+		else if(sameName == 0) {
+			FileItem file = new FileItem();
+			file.setTitle(folderName);
+			file.setMimeType("application/vnd.google-apps.folder");
+			String newId = gdResource.insertFile(file, "");
+			gdResource.updatePermissions(newId);
+			log.info("Folder: '" + folderName +"' created and shared succesfully.");
+		} else {
+			res = ids.get(0);
+		}
+		
+		return res;
+	}
 }

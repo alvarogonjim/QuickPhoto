@@ -64,4 +64,11 @@ public class Owner implements Serializable
         this.emailAddress = emailAddress;
     }
 
+	@Override
+	public String toString() {
+		return "Owner:\n[\nkind=" + kind + ", \ndisplayName=" + displayName + ", \npicture=" + picture
+				+ ", \nisAuthenticatedUser=" + isAuthenticatedUser + ", \npermissionId=" + permissionId
+				+ ", \nemailAddress=" + emailAddress + "\n]";
+	}
+
 }
