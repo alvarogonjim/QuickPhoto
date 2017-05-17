@@ -3,10 +3,10 @@
 <main>
    <%@include file="includes/app/body-nav.jsp"%>
    <!-- Contenido para incrustar API -->
-   <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1',
+   <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
       'http://www.sevilla-airport.com/images/sevilla-rio.jpg');"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
    <div id="editor" class="aviary-app-container">
-        <%@include file="includes/app/descriptions/upload-desc.jsp"%>
+   		<%@include file="includes/app/descriptions/upload-desc.jsp"%>
       <div class="row" style="text-align: center;">
          <div class="col s10 offset-s1">
             <div class="card grey lighten-3">
