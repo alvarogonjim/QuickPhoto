@@ -21,6 +21,9 @@
                      <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${ file.webContentLink }');">      
                      	<i class="fa fa-pencil" aria-hidden="true"></i>
                      </a>
+                     <td>
+					<a href="GoogleDriveFileDelete?id=${file.id}"><img src="https://superrepo.org/static/images/icons/original/xscript.delete.files.png.pagespeed.ic.TF1iwtyDDU.png" width="30px"></a>
+					</td>
                   </div>
                   <div class="card-content">
                      <p>${file.title}</p>
