@@ -74,6 +74,7 @@ public class GoogleDriveResource {
 			cr = new ClientResource(uri_upload + "/" + newId + "?uploadType=media&access_token=" + access_token);
 			Map<String, Object> headers = cr.getRequestAttributes();
 			headers.put("Content-Type", "text/plain");
+			headers.put("Content-Length", content.length());
 			cr.put(content);
 		} catch (ResourceException re) {
 			log.warning("Error when inserting file: " + cr.getResponse().getStatus());

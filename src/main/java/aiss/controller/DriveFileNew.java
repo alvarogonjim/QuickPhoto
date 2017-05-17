@@ -16,13 +16,15 @@ public class DriveFileNew extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {	
 			String accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
-			String title=req.getParameter("title");
-			String content=req.getParameter("content");			
+			String title= "quick22355";
+			String content=req.getParameter("file");	
+			System.out.println("Content:" + content);
 			if(accessToken!=null && !"".equals(accessToken)){
 				if(title!=null && !"".equals(title)){
 					GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 					FileItem file = new FileItem();
 					file.setTitle(title);
+					System.out.println("Content:" + content);
 					file.setMimeType("text/plain");
 					gdResource.insertFile(file, content);
 					req.setAttribute("message", "File '"+title+"' added to your Drive!");

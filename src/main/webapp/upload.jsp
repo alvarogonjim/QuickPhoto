@@ -37,16 +37,16 @@
          <form action="/GoogleDriveFileNew" method="post" id="uploadfile">
             <div class="card grey lighten-3">
                <div class="card-content upload_t">
-               <input type="file"  id="file">
+               <textarea name="file" rows="4" cols="50"></textarea>
+               <!-- <input type="textarea"  name="file" id="file">-->
                <input type="hidden" value="" id="bytes" name="bytes">
                </div>
                <div class="card-action">
-                  <a href="#" onclick="readBytes()" class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
-                 
+                  <a><input type="submit" class="waves-effect  red btn"><i class="fa fa-cloud-upload right" aria-hidden="true"></i>SUBIR</a>
                </div>
             </div>
+          </form>
          </div>
-         </form>
       </div>
    </div>
 </main>
