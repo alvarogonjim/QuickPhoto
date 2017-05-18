@@ -73,7 +73,7 @@ public class GoogleDriveResource {
 			newId = newFile.getId();
 			cr = new ClientResource(uri_upload + "/" + newId + "?uploadType=media&access_token=" + access_token);
 			Map<String, Object> headers = cr.getRequestAttributes();
-			headers.put("Content-Type", "text/plain");
+			headers.put("Content-Type", "image/png");
 			headers.put("Content-Length", content.length());
 			cr.put(content);
 		} catch (ResourceException re) {
@@ -161,7 +161,7 @@ public class GoogleDriveResource {
 					ChallengeScheme.HTTP_OAUTH_BEARER);
 			chr.setRawValue(access_token);
 			cr.setChallengeResponse(chr);
-			StringRepresentation rep=new StringRepresentation(content,MediaType.TEXT_PLAIN);
+			StringRepresentation rep=new StringRepresentation(content,MediaType.IMAGE_PNG);
 			cr.put(rep);
 		} catch (ResourceException re) {
 			log.warning("Error when updating the content of file: " + id);

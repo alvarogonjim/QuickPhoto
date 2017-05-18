@@ -26,6 +26,7 @@ public class CompressFile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// Create image
+		String id = request.getParameter("id");
 		String url = request.getParameter("img2compress");
 		System.out.println("URL : " + url);
 		Source s = new Source(url);
@@ -39,6 +40,10 @@ public class CompressFile extends HttpServlet {
 		response.getWriter().println("Propertiers: " + im.getInput());
 		response.getWriter().println("\n\n<b>OUTPUT:</b><br><img src=\"" + im.getOutput().getUrl() + "\"/>");
 		response.getWriter().println("Propertiers: " + im.getOutput());
+		
+		request.setAttribute("id", id);
+		request.setAttribute("url", im.getOutput().getUrl());
+		request.getRequestDispatcher("/GoogleDriveFileUpdate").forward(request,response);
 		/*Enviarla para subirla
 		request.getRequestDispatcher("/GoogleDriveFileNew").forward(request,response);*/
 	}

@@ -8,9 +8,9 @@
 
    <div class="row" style="padding: 0px 50px 0px 50px;">
       
-      <c:forEach items="${requestScope.files}" var="file">
+      <c:forEach items="${requestScope.files.items}" var="file">
          <c:if test="${fn:contains(file.mimeType, 'image/')}">
-         <form action="/hello" method="post">
+         <form action="/compress" method="post">
             <div class="col s12 m6 l4 xl2">
                <div class="card">
                   <div class="card-image" style="height: 200px">
@@ -28,6 +28,7 @@
                   </div>
                </div>
             </div>
+            <input type="hidden" name="id" value="${file.id}"></input>
          	<input type="hidden" name="img2compress" value="${file.webContentLink}"></input>
          	<!-- La url que devuelve es demasiado larga y creo que por eso falla
          	 <input type="hidden" name="img2compress" value="${fn:substringBefore(file.downloadUrl, '?')}"></input>  -->
