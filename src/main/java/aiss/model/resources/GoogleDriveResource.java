@@ -1,17 +1,24 @@
 package aiss.model.resources;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
-import org.restlet.data.Form;
-import org.restlet.data.Header;
 import org.restlet.data.MediaType;
+import org.restlet.representation.InputRepresentation;
+import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
-import org.restlet.util.Series;
 
 import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
@@ -73,9 +80,29 @@ public class GoogleDriveResource {
 			newId = newFile.getId();
 			cr = new ClientResource(uri_upload + "/" + newId + "?uploadType=media&access_token=" + access_token);
 			Map<String, Object> headers = cr.getRequestAttributes();
-			headers.put("Content-Type", "image/png");
+			headers.put("Content-Type", "image/jpg");
 			headers.put("Content-Length", content.length());
 			cr.put(content);
+		} catch (ResourceException re) {
+			log.warning("Error when inserting file: " + cr.getResponse().getStatus());
+		}
+		return newId;
+	}
+	
+	public String insertFile(FileItem file, byte[] content) {
+
+		ClientResource cr = null;
+		String newId = null;
+		try {
+			cr = new ClientResource(uri + "?access_token=" + access_token);
+			FileItem newFile = cr.post(file, FileItem.class);
+			newId = newFile.getId();
+			cr = new ClientResource(uri_upload + "/" + newId + "?uploadType=media&access_token=" + access_token);
+			Map<String, Object> headers = cr.getRequestAttributes();
+			headers.put("Content-Type", "image/jpg");
+//			headers.put("Content-Length", content.length());
+			cr.getRequest().setEntity(new InputRepresentation(new ByteArrayInputStream(content),MediaType.APPLICATION_OCTET_STREAM));
+			cr.put("");
 		} catch (ResourceException re) {
 			log.warning("Error when inserting file: " + cr.getResponse().getStatus());
 		}
@@ -161,7 +188,7 @@ public class GoogleDriveResource {
 					ChallengeScheme.HTTP_OAUTH_BEARER);
 			chr.setRawValue(access_token);
 			cr.setChallengeResponse(chr);
-			StringRepresentation rep=new StringRepresentation(content,MediaType.IMAGE_PNG);
+			StringRepresentation rep=new StringRepresentation(content,MediaType.IMAGE_ALL);
 			cr.put(rep);
 		} catch (ResourceException re) {
 			log.warning("Error when updating the content of file: " + id);

@@ -27,12 +27,12 @@ public class DriveFileUpdate extends HttpServlet {
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
 				java.net.URL urlO = new java.net.URL(url);
 				java.io.File fileR = null;
-				
-				try {
-					fileR = java.nio.file.Paths.get(urlO.toURI()).toFile();
-				} catch (URISyntaxException e) {
-					e.printStackTrace();
-				}
+//				
+//				try {
+//					//fileR = java.nio.file.Paths.get(urlO.toURI()).toFile();
+//				} catch (URISyntaxException e) {
+//					e.printStackTrace();
+//				}
 
 				FileItem file=gdResource.getFile(id);				
 				req.setAttribute("file", file);
