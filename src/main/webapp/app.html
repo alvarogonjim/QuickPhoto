@@ -1,103 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-      <title>QuickPhoto - Inicio</title>
-      <!-- CSS  -->
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-   </head>
-   <body>
-      <header>
-         <ul id="nav-mobile" class="side-nav fixed">
-            <div class="logo" ><a id="logo-container" href="/index.html" class="brand-logo" style="font-size:2.1rem; color:#fff; text-align:center;">
-               <b>Quick</b><span class="fa fa-picture-o" aria-hidden="true"></span>Photo</a>
-            </div>
-            <li class="no-padding">
-               <ul class="collapsible collapsible-accordion">
-               	  <li class="bold upload"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-cloud-upload" aria-hidden="true"></i>SUBE</a>
-                  </li>
-                  <li class="bold edit"><a href="/edit.html" class="collapsible-header  waves-effect waves-teal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>EDITA</a>
-                  <li class="bold compress"><a class="collapsible-header  waves-effect waves-teal"><i class="fa fa-compress" aria-hidden="true"></i> COMPRIME</a>
-                  
-               </ul>
-            </li>
-         </ul>
-      </header>
-      <main>
-         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container">
-               <ul class="right hide-on-med-and-down">
-                  <li>
-                     <div class="chip" class='dropdown-button btn'  data-activates='dropdown1'>
-                        <img src="http://materializecss.com/images/yuna.jpg" alt="Contact Person">Jane Doe
-                     </div>
-                  </li>
-                  <div class='dropdown-button chip' href='#' data-constrainwidth="false" data-activates='dropdown1'><i style="line-height: 32px;" class="fa fa-sort-desc" aria-hidden="true"></i></div>
-                  <!-- Dropdown Structure -->
-                  <ul id='dropdown1' class='dropdown-content'>
-                     <li><a href="#!">Cerrar Sesión</a></li>
-                  </ul>
-               </ul>
-               <ul id="nav-mobile" class="side-nav">
-                  <li><a href="#">Inicio</a></li>
-               </ul>
-               <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
-            </div>
-         </nav>
-    		<!-- Contenido para incrustar API -->
-         	<a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
-    'http://www.sevilla-airport.com/images/sevilla-rio.jpg');"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
-            
-            <div id="editor" class="aviary-app-container">
-	            
-				<!-- PAGINA DE EJEMPLO DEL EDITOR, LE PASAMOS UNA FOTO DE SEVILLA PUBLICA, LA EDITAMOS 
-Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
 
-<!-- Para cargar el Widget -->
-<script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Hello App Engine</title>
+  </head>
 
-
-<!-- De aqui le tenemos que pasar la imagen del Google Drive (Importante el ID y el URL) -->
-<img id="editableimage1" src="https://lh3.googleusercontent.com/_Ei4-6OL2y98o6BOXRVy4-dkQtz_EqYvK2dFwT7zGjaX7jRr90Jm9phDeCgVVozC8I5LR1dH=w1920-h950-rw"/>
- 
-
-<!-- Esto es para instanciarlo -->
-<script type="text/javascript">
-
-    var featherEditor = new Aviary.Feather({
-        apiKey: '1234567',
-        appendTo: 'editor',
-        language: 'es',
-        onSave: function(imageID, newURL) {
-            var img = document.getElementById(imageID);
-            img.src = newURL;
-        }
-    });
-
-    function launchEditor(id, src) {
-        featherEditor.launch({
-            image: id,
-            url: src
-        });
-        return false;
-    }
-
-</script>                         
-
-<!-- Un boton que llama a la funcion del editor con la imagen que le pasamos arriba (Debe de tener el mismo ID y el URL debe ser publica) -->    
-    
-<a href="#" onclick="return launchEditor('editableimage1', 
-    'https://lh3.googleusercontent.com/_Ei4-6OL2y98o6BOXRVy4-dkQtz_EqYvK2dFwT7zGjaX7jRr90Jm9phDeCgVVozC8I5LR1dH=w1920-h950-rw');">Edita la Imagen!</a>
-				
-				
-			</div>
-      </main>
-      <!--  Scripts-->
-      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="js/materialize.js"></script>
-      <script src="js/init.js"></script>
-   </body>
+  <body>
+    <h1>Hello App Engine!</h1>
+	
+    <table>
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
+      </tr>
+      <tr>
+        <td><a href="api/user">PlayList_API</a></td>
+      </tr>
+    </table>
+  </body>
 </html>
