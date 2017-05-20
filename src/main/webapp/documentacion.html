@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+      <title>QuickPhoto - Inicio</title>
+      <!-- CSS  -->
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   </head>
+   <body>
+      <nav class="light-blue lighten-1" role="navigation">
+         <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo"><b> Quick</b><span class="fa fa-picture-o" aria-hidden="true"></span>Photo</a>
+            <ul class="right hide-on-med-and-down">
+               <li><a href="/index.html">Inicio</a></li>
+               <li><a href="/AuthController/GoogleDrive">Acceder</a></li>
+                <li class="active"><a href="/documentacion.html">QuickPhoto API</a></li>
+            </ul>
+            <ul id="nav-mobile" class="side-nav">
+               <li><a href="/index.html">Inicio</a></li>
+               <li><a href="/AuthController/GoogleDrive">Acceder</a></li>
+               <li class="active"><a href="/documentacion.html">QuickPhoto API</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+         </div>
+      </nav>
+      <div class="section no-pad-bot" id="index-banner">
+         <div class="container">
+            <br><br>
+            <h1 class="header orange-text"><i class="fa fa-globe" aria-hidden="true"></i> API Reference</h1>
+            <div class="row">
+               <p class=" col s12 light">The Tinify API allows you to compress and optimize JPEG and PNG images. It is designed as a REST service. This page describes the raw HTTP API. We also maintain client libraries in various languages that make it very easy to interact with the Tinify API.
+<br><div class="chip">The API is hosted at <b>api.tinify.com</b></div></p>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="section">
+         <div class="row">
+        <div class="col s12 m6">
+          <div class="card grey lighten-3">
+            <div class="card-content grey-text text-darken-4">
+              <span class="card-title">Acciones</span>
+             <table>
+        <thead>
+          <tr>
+              <th>HTTP</th>
+              <th>URI</th>
+              <th>Descripción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>GET</td>
+            <td>/user</td>
+            <td>Devuelve todos los usuarios de la aplicación</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/user/{userId}</td>
+            <td>Devuelve el usuario con id=userId. Si el usuario no existe devuelve un “404 Not found” </td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/user</td>
+            <td>Añade un nuevo usuario cuyos datos se pasan en el cuerpo de una petición en formato JSON (no se debe pasar el id, este se genera automáticamente). Si alguno de los campos no es válido (null o vacío) devuelve un error. Si se añade satisfactoriamente devuelve “201 Created” con la referencia a la URI y el contenido del usuario</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/user</td>
+            <td>Actualiza el usuario cuyos datos se pasan en el cuerpo de la petición en formato JSON (deben incluir el id del usuario). Si el usuario no existe devuelve un “404 Not found”. Si se realiza correctamente devuelve un “200 Ok”</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>/user/{userId}</td>
+            <td>Elimina el usuario con id = userId. Si el usuario no existe devuelve un “404 Not found”. Si se realiza correctamente devuelve un “200 Ok”</td>
+          </tr>
+        </tbody>
+      </table>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="card grey lighten-3">
+            <div class="card-content grey-text text-darken-4">
+              <span class="card-title">Representación</span>
+              Cada usuario tiene un identificador, nombre, apellidos y email. La representación del objeto JSON del recurso es: 
+              <br>
+              <br>
+              <div class="grey lighten-5" style="padding: 12px 12px 12px 12px">
+{<br>
+  &nbsp;&nbsp;"id": "S0",<br>
+  &nbsp;&nbsp;"name": "Alvaro",<br>
+  &nbsp;&nbsp;"surName": "Gonzalez",<br>
+  &nbsp;&nbsp;"email": "alvarogonjim@gmail.com"<br>
+}<br>
+</div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+          
+         </div>
+      </div>
+      <footer class="page-footer orange">
+         <div class="container">
+            <div class="row">
+               <div class="col l6 s12">
+                  <h5 class="white-text">Biografía del equipo</h5>
+                  <p class="grey-text text-lighten-4">Somos un grupo de estudiantes universitarios trabajando en esta mashup para la asignatura de Arquitectura e Integración de Sistemas Software.</p>
+               </div>
+               <div class="col l3 s12">
+                  <h5 class="white-text">Escuela</h5>
+                  <ul>
+                     <li><a class="white-text" href="https://www.informatica.us.es/">Facultad de Informática</a></li>
+                     <li><a class="white-text" href="http://www.lsi.us.es/docencia/pagina_asignatura.php?id=97">Asignatura</a></li>
+                     <li><a class="white-text" href="http://www.us.es/">Universidad de Sevilla</a></li>
+                  </ul>
+               </div>
+               <div class="col l3 s12">
+                  <h5 class="white-text">API's</h5>
+                  <ul>
+                     <li><a class="white-text" href="https://developers.google.com/drive/">Google Drive</a></li>
+                     <li><a class="white-text" href="https://creativesdk.adobe.com/features/#/creative-tools.html">Aviary</a></li>
+                     <li><a class="white-text" href="https://tinypng.com/developers/reference">Tinify</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="footer-copyright">
+            <div class="container">
+             Copyright © 2017 - Framework web front-end by <a class="blue-text text-darken-3" href="http://materializecss.com">Materialize</a> <div style="float: right"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a></div>
+            </div>
+         </div>
+      </footer>
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+   </body>
+</html>

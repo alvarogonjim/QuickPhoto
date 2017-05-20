@@ -3,6 +3,16 @@
 <script type="text/javascript"src="js/uploadFile.js"></script>
 <script type="text/javascript"src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 <script>
+function formatSizeUnits(bytes){
+    if      (bytes>=1073741824) {bytes=(bytes/1073741824).toFixed(2)+' GB';}
+    else if (bytes>=1048576)    {bytes=(bytes/1048576).toFixed(2)+' MB';}
+    else if (bytes>=1024)       {bytes=(bytes/1024).toFixed(2)+' KB';}
+    else if (bytes>1)           {bytes=bytes+' bytes';}
+    else if (bytes==1)          {bytes=bytes+' byte';}
+    else                        {bytes='0 byte';}
+    return bytes;
+}
+
 function getBase64FromImageUrl(url, type) {
 	   var img = new Image();
 
@@ -27,13 +37,13 @@ function getBase64FromImageUrl(url, type) {
 <main>
    <%@include file="includes/app/body-nav.jsp"%>
    <div id="editor" class="aviary-app-container">
-      <%@include file="includes/app/descriptions/upload-desc.jsp"%>
+      <%@include file="includes/app/descriptions/cresult-desc.jsp"%>
       <div class="row" style="text-align: center;">
          <div class="col s10 offset-s1">
             <div class="card grey lighten-3">
-               <div class="card-content upload_t">
+               <div class="card-content compress_t">
                   <p class="card-title">
-                    <i class="fa fa-compress" aria-hidden="true"></i> Resultado
+                    <i class="fa fa-compress" aria-hidden="true"></i> Información:
                   </p>
                </div>
                <div class="card-action">
@@ -41,9 +51,10 @@ function getBase64FromImageUrl(url, type) {
                   <img src="${ inputURL }" style="max-width: 45%; height: auto;" />
                   <img src="${ output.url }" style="max-width: 45%; height: auto;" />
                   </center>
-                  <span>Original: ${input.size} Bytes </span> 
-                  <span>Comprimida: ${output.size} Bytes </span>
-                  <span>Ratio de compresión de mejora: ${output.ratio} Bytes </span>
+                  <div class="chip" ><b>Original:</b> ${input.size} Bytes</div>
+                  <div class="chip" ><b>Comprimida:</b> ${output.size} Bytes </div>
+                  <br>
+                  <div class="chip" ><b>Ratio de compresión:</b> ${output.ratio*100}%</div>
                </div>
             </div>
          </div>

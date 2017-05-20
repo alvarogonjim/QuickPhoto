@@ -102,10 +102,12 @@
      if (!callback) {
          callback = function(file) {
         	 document.getElementById("loading").style = "display: none;";
-        	 document.getElementById("success").style = "";
+        	 Materialize.toast('Imagen subida correctamente', 6000);
+        	 document.getElementById("uploadButton").style = "display: none;";
         	 document.getElementById("resultsDiv").style = "display: none;";
         	 document.getElementById("filePicker").style = "display: none;";
-        	 window.location.replace("http://localhost:8090/GoogleDriveFileNew");
+        	 window.location.replace("/GoogleDriveFileNew");
+        	 Materialize.toast('Redirigiendo al editor...', 6000);
          };
      }
      document.getElementById("loading").style = "";

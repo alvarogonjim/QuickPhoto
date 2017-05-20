@@ -4,7 +4,7 @@
    <%@include file="includes/app/body-nav.jsp"%>
    <!-- Contenido para incrustar API -->
    <div class="aviary-app-container">
-   <%@include file="includes/app/descriptions/select-desc.jsp"%>
+   <%@include file="includes/app/descriptions/compress-desc.jsp"%>
 
    <div class="row" style="padding: 0px 50px 0px 50px;">
       
