@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.net.URLEncoder;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Map;
@@ -22,6 +24,7 @@ import org.restlet.resource.ResourceException;
 
 import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
+import aiss.model.google.drive.Parent;
 import aiss.model.google.drive.UserPermission;
 
 public class GoogleDriveResource {
@@ -52,6 +55,27 @@ public class GoogleDriveResource {
 		}
 
 		return files;
+	}
+	
+	
+	public boolean moveFile(String fileId, String parentId) throws UnsupportedEncodingException
+	{
+		ClientResource cr = null;
+		boolean res = true;
+		try {
+			//POST https://www.googleapis.com/drive/v2/files/fileId/parents
+			String cid = URLEncoder.encode(fileId, "UTF-8");
+			cr = new ClientResource(uri+"/"+ cid +"/parents?access_token=" + access_token);
+			Parent p = new Parent();
+			p.setId(parentId);
+			cr.post(p);
+
+		} catch (ResourceException re) {
+			log.warning("Error when retrieving all files: " + cr.getResponse().getStatus());
+			res = false;
+		}
+
+		return res;
 	}
 
 	public FileItem getFile(String id) {

@@ -36,20 +36,22 @@ public class CompressFile extends HttpServlet {
 		response.setStatus(HttpServletResponse.SC_OK);
 		log.log(Level.FINE, "Processing GET request");
 
+		/*
 		response.getWriter().println("<b>INPUT:</b><br><img src=\""+ url +"\"/>");
 		response.getWriter().println("Propertiers: " + im.getInput());
 		response.getWriter().println("\n\n<b>OUTPUT:</b><br><img src=\"" + im.getOutput().getUrl() + "\"/>");
-		response.getWriter().println("Propertiers: " + im.getOutput());
+		response.getWriter().println("Propertiers: " + im.getOutput().getType());
+		*/
 		
-		request.setAttribute("id", id);
-		request.setAttribute("url", im.getOutput().getUrl());
-		request.getRequestDispatcher("/GoogleDriveFileUpdate").forward(request,response);
+		request.setAttribute("inputURL", url);
+		request.setAttribute("output", im.getOutput());
+		request.setAttribute("input", im.getInput());
+		request.getRequestDispatcher("/compressResult.jsp").forward(request,response);
 		/*Enviarla para subirla
 		request.getRequestDispatcher("/GoogleDriveFileNew").forward(request,response);*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 }

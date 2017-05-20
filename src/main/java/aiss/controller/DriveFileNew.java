@@ -1,6 +1,7 @@
 package aiss.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.resteasy.util.Base64;
 
 import aiss.model.google.drive.FileItem;
+import aiss.model.google.drive.Files;
 import aiss.model.resources.GoogleDriveResource;
 
 public class DriveFileNew extends HttpServlet {
@@ -19,30 +21,13 @@ public class DriveFileNew extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {	
 			String accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
-			String title= "quick22355.jpg";
-			String content=req.getParameter("bytes");	
-//			for(Object entry : req.getParameterMap().keySet()){
-//			String n = (String) entry;
-//			System.out.println(n);
-//			}
-			System.out.println("Content1:" + content.split(";")[1].split(",")[1]);
-			byte[] con = Base64.decode(content.split(";")[1].split(",")[1]);
 			
 			if(accessToken!=null && !"".equals(accessToken)){
-				if(title!=null && !"".equals(title)){
-					GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
-					FileItem file = new FileItem();
-					file.setTitle(title);
-					System.out.println("Content2:" + content);
-					file.setMimeType("image/jpg");
-					gdResource.insertFile(file, con);
-					req.setAttribute("message", "File '"+title+"' added to your Drive!");
-					req.getRequestDispatcher("/googleDriveListing").forward(req,resp);
-				}else{
-					req.setAttribute("message", "You must provide a valid title for file");
-					req.setAttribute("content", content);
-					req.getRequestDispatcher("EditFile.jsp").forward(req,resp);
-				}
+				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
+				String files_0 = gdResource.getFiles().getItems().get(0).getId();
+				String parentId = createFolder("QuickPhoto", gdResource);
+				gdResource.moveFile(files_0, parentId);
+				req.getRequestDispatcher("/select").forward(req,resp);
 			}else{
 				log.info("Trying to acces to google drive without an acces token, redirecting to OAuth servlet");
 				req.getRequestDispatcher("/AuthController/GoogleDrive").forward(req,resp);
@@ -52,5 +37,26 @@ public class DriveFileNew extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		doGet(req,resp);
+	}
+	
+	public String createFolder(String folderName, GoogleDriveResource gdResource)
+	{
+		List<String> ids = gdResource.getFiles().getFoldersIdByName(folderName);
+		int sameName = ids.size();
+		String res = "";
+		if(sameName > 1)
+			log.warning("There are " + sameName + " folders with title: '" + folderName +"'. There should only be one.");
+		else if(sameName == 0) {
+			FileItem file = new FileItem();
+			file.setTitle(folderName);
+			file.setMimeType("application/vnd.google-apps.folder");
+			String newId = gdResource.insertFile(file, "");
+			gdResource.updatePermissions(newId);
+			log.info("Folder: '" + folderName +"' created and shared succesfully.");
+		} else {
+			res = ids.get(0);
+		}
+		
+		return res;
 	}
 }

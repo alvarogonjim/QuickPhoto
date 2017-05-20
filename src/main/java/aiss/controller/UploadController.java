@@ -16,7 +16,6 @@ public class UploadController extends HttpServlet {
 	private static final Logger log = Logger.getLogger(UploadController.class.getName());
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
 				req.getRequestDispatcher("/upload.jsp").forward(req,resp);
 	}
 	

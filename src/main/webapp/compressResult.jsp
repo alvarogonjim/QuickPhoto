@@ -2,6 +2,28 @@
 <%@include file="includes/app/body-header.jsp"%>
 <script type="text/javascript"src="js/uploadFile.js"></script>
 <script type="text/javascript"src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+<script>
+function getBase64FromImageUrl(url, type) {
+	   var img = new Image();
+
+	   img.setAttribute('crossOrigin', 'anonymous');
+
+	   img.onload = function () {
+	       var canvas = document.createElement("canvas");
+	       canvas.width =this.width;
+	       canvas.height =this.height;
+
+	       var ctx = canvas.getContext("2d");
+	       ctx.drawImage(this, 0, 0);
+
+	       var dataURL = canvas.toDataURL(type);
+
+	  //     var url= dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	   };
+
+	   newUploadFile_own(dataURL, type, "comprimida")
+	}
+</script>
 <main>
    <%@include file="includes/app/body-nav.jsp"%>
    <div id="editor" class="aviary-app-container">
@@ -11,25 +33,17 @@
             <div class="card grey lighten-3">
                <div class="card-content upload_t">
                   <p class="card-title">
-                     <i class="fa fa-google fa-lg" aria-hidden="true"></i> Google Drive
-                     Estadisticas
+                    <i class="fa fa-compress" aria-hidden="true"></i> Resultado
                   </p>
                </div>
                <div class="card-action">
-                  <span class="upload_t"> 16GB totales</span>
-                  <div class="progress  cyan lighten-4">
-                     <div class="determinate red" style="width: 70%"></div>
-                     <div class="determinate upload" style="width: 60%"></div>
-                  </div>
-                  <div class="chip upload_t">
-                     9,6GB<span style="color: rgba(0, 0, 0, 0.87);"> Archivos</span>
-                  </div>
-                  <div class="chip red-text">
-                     1,6GB<span style="color: rgba(0, 0, 0, 0.87);"> QuickPhoto</span>
-                  </div>
-                  <div class="chip cyan-text">
-                     4,8GB<span style="color: rgba(0, 0, 0, 0.87);"> Libre</span>
-                  </div>
+               <center>
+                  <img src="${ inputURL }" style="max-width: 45%; height: auto;" />
+                  <img src="${ output.url }" style="max-width: 45%; height: auto;" />
+                  </center>
+                  <span>Original: ${input.size} Bytes </span> 
+                  <span>Comprimida: ${output.size} Bytes </span>
+                  <span>Ratio de compresión de mejora: ${output.ratio} Bytes </span>
                </div>
             </div>
          </div>
@@ -64,7 +78,7 @@
                   <div id="resultsDiv" class="resultDiv"></div>
                </div>
                <div class="card-action">
-                  <a id="uploadButton" style="display: none" class="waves-effect waves-light btn upload">SUBIR <i class="fa fa-cloud-upload" aria-hidden="true"></i></a>
+                  <a  onclick="getBase64FromImageUrl(${output.url}, ${output.type})" class="waves-effect waves-light btn upload">SUBIR <i class="fa fa-cloud-upload" aria-hidden="true"></i></a>
                </div>
             </div>
          </div>

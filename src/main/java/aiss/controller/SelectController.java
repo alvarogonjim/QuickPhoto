@@ -32,7 +32,8 @@ public class SelectController extends HttpServlet {
 				for(Parent pa : i.getParents())
 					if(pa.getId().equals(QPfolderID))
 						files.add(i);
-
+						
+			
 			if(files!=null){
 				req.setAttribute("files", files);
 				req.getRequestDispatcher("/select.jsp").forward(req,resp);

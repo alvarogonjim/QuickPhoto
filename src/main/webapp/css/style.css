@@ -89,3 +89,8 @@ background-repeat: no-repeat;
 .upload{
 	background-color: #0BC1F7 !important; 
 }
+.resultsDiv, img{
+	max-width: 95%;
+	margin: 16px 16px 16px 16px;
+	height: auto;
+} 

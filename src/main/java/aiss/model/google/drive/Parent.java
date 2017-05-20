@@ -55,4 +55,10 @@ public class Parent implements Serializable
         this.isRoot = isRoot;
     }
 
+	@Override
+	public String toString() {
+		return "Parent [kind=" + kind + ", id=" + id + ", selfLink=" + selfLink + ", parentLink=" + parentLink
+				+ ", isRoot=" + isRoot + "]";
+	}
+
 }

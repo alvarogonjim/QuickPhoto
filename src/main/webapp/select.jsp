@@ -2,9 +2,6 @@
 <%@include file="includes/app/body-header.jsp"%>
 <main>
    <%@include file="includes/app/body-nav.jsp"%>
-   <!-- Contenido para incrustar API -->
-   <a class="btn-floating btn-large waves-effect waves-light red inmersive-mode-btn" onclick="return launchEditor('editableimage1', 
-      'http://www.sevilla-airport.com/images/sevilla-rio.jpg');"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
    <div id="editor" class="aviary-app-container">
    <%@include file="includes/app/descriptions/select-desc.jsp"%> 
      
@@ -24,7 +21,7 @@
                      <a class="btn-floating halfway-fab waves-effect waves-light pink" onClick="return launchEditor('${ file.id }', '${ file.webContentLink }');">      
                      	<i class="fa fa-pencil" aria-hidden="true"></i>
                      </a>
-					<a class="btn-floating halfway-fab waves-effect waves-light red" href="GoogleDriveFileDelete?id=${file.id}">
+					<a class="btn-floating halfway-fab waves-effect waves-light grey darken-3" style="right: 82px;" href="GoogleDriveFileDelete?id=${file.id}">
 						<i class="fa fa-trash" aria-hidden="true"></i>
 					</a>
 					
@@ -47,7 +44,11 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
 
   
 <!-- De aqui le tenemos que pasar la imagen del Google Drive (Importante el ID y el URL) -->
+<form action="/compress" method="post" id="toCompress" style="display:none;">
 <img class="modify" id="modify" src="" style="display:none;"/>
+<input type="hidden" name="img2compress" id="imgEdited" value="" />
+<input type="hidden" name="id" id="idEdited" value="" />
+</form>
  
 
 <!-- Esto es para instanciarlo -->
@@ -60,6 +61,13 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
         onSave: function(imageID, newURL) {
             var img = document.getElementById(imageID);
             img.src = newURL;
+            document.getElementById("idEdited").value = imageID;
+            document.getElementById("imgEdited").value = newURL;
+            featherEditor.close();
+            Materialize.toast('Imagen guardada correctamente', 6000);
+            Materialize.toast('Comprimiendo...', 6000);
+            document.getElementById("toCompress").submit();
+          
         }
     });
 

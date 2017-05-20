@@ -141,7 +141,7 @@
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>redirect:/select</param-value>
+    	<param-value>redirect:/upload</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
