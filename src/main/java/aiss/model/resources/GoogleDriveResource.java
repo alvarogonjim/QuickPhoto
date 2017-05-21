@@ -26,13 +26,15 @@ import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
 import aiss.model.google.drive.Parent;
 import aiss.model.google.drive.UserPermission;
+import aiss.model.google.drive.about.About;
 
 public class GoogleDriveResource {
-	private static final Logger log=Logger.getLogger(GoogleDriveResource.class.getName());
-	
+	private static final Logger log = Logger.getLogger(GoogleDriveResource.class.getName());
+
 	private String uri = "https://www.googleapis.com/drive/v2/files";
 	private String access_token;
 	private String uri_upload = "https://www.googleapis.com/upload/drive/v2/files";
+	private String uri_about = "https://www.googleapis.com/drive/v2/about";
 
 	public GoogleDriveResource(String access_token) {
 		this.access_token = access_token;
@@ -56,16 +58,26 @@ public class GoogleDriveResource {
 
 		return files;
 	}
-	
-	
-	public boolean moveFile(String fileId, String parentId) throws UnsupportedEncodingException
-	{
+
+	public About getAbout() {
+		ClientResource cr = null;
+		About info = null;
+		try {
+			cr = new ClientResource(uri_about + "?access_token=" + access_token);
+			info = cr.get(About.class);
+		} catch (ResourceException re) {
+			log.warning("Error when retrieving file: " + cr.getResponse().getStatus());
+		}
+		return info;
+	}
+
+	public boolean moveFile(String fileId, String parentId) throws UnsupportedEncodingException {
 		ClientResource cr = null;
 		boolean res = true;
 		try {
-			//POST https://www.googleapis.com/drive/v2/files/fileId/parents
+			// POST https://www.googleapis.com/drive/v2/files/fileId/parents
 			String cid = URLEncoder.encode(fileId, "UTF-8");
-			cr = new ClientResource(uri+"/"+ cid +"/parents?access_token=" + access_token);
+			cr = new ClientResource(uri + "/" + cid + "/parents?access_token=" + access_token);
 			Parent p = new Parent();
 			p.setId(parentId);
 			cr.post(p);
@@ -112,7 +124,7 @@ public class GoogleDriveResource {
 		}
 		return newId;
 	}
-	
+
 	public String insertFile(FileItem file, byte[] content) {
 
 		ClientResource cr = null;
@@ -124,8 +136,9 @@ public class GoogleDriveResource {
 			cr = new ClientResource(uri_upload + "/" + newId + "?uploadType=media&access_token=" + access_token);
 			Map<String, Object> headers = cr.getRequestAttributes();
 			headers.put("Content-Type", "image/jpg");
-//			headers.put("Content-Length", content.length());
-			cr.getRequest().setEntity(new InputRepresentation(new ByteArrayInputStream(content),MediaType.APPLICATION_OCTET_STREAM));
+			// headers.put("Content-Length", content.length());
+			cr.getRequest().setEntity(
+					new InputRepresentation(new ByteArrayInputStream(content), MediaType.APPLICATION_OCTET_STREAM));
 			cr.put("");
 		} catch (ResourceException re) {
 			log.warning("Error when inserting file: " + cr.getResponse().getStatus());
@@ -146,12 +159,12 @@ public class GoogleDriveResource {
 		}
 		return result;
 	}
-	
+
 	public boolean updatePermissions(String id) {
 		ClientResource cr = null;
 		boolean res = false;
 		try {
-			
+
 			UserPermission up = new UserPermission();
 			up.setRole("writer");
 			up.setType("anyone");
@@ -181,38 +194,38 @@ public class GoogleDriveResource {
 
 	}
 
-	public String getFileContent(FileItem item){
-		String result=null;
-		String contentURL=item.getDownloadUrl();
-		try{
-			ClientResource cr = new ClientResource(contentURL);			
-			/*Map<String, Object> reqAttribs = cr.getRequestAttributes(); 
-	        Series<Header> headers = (Series<Header>)reqAttribs.get("org.restlet.http.headers"); 
-	        if (headers == null) { 
-	            headers = new Series<Header>(Header.class); 
-	            reqAttribs.put("org.restlet.http.headers", headers); 
-	        } 
-	        headers.add(new Header("Authorization:", "Bearer "+access_token));*/
-			ChallengeResponse chr = new ChallengeResponse(
-					ChallengeScheme.HTTP_OAUTH_BEARER);
+	public String getFileContent(FileItem item) {
+		String result = null;
+		String contentURL = item.getDownloadUrl();
+		try {
+			ClientResource cr = new ClientResource(contentURL);
+			/*
+			 * Map<String, Object> reqAttribs = cr.getRequestAttributes();
+			 * Series<Header> headers =
+			 * (Series<Header>)reqAttribs.get("org.restlet.http.headers"); if
+			 * (headers == null) { headers = new Series<Header>(Header.class);
+			 * reqAttribs.put("org.restlet.http.headers", headers); }
+			 * headers.add(new Header("Authorization:",
+			 * "Bearer "+access_token));
+			 */
+			ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
 			chr.setRawValue(access_token);
 			cr.setChallengeResponse(chr);
-			
-			result=cr.get(String.class);
+
+			result = cr.get(String.class);
 		} catch (ResourceException re) {
-			log.warning("Error when obtaining content of file: " + item.getId());			
+			log.warning("Error when obtaining content of file: " + item.getId());
 		}
 		return result;
 	}
-	
-	public boolean updateFileContent(String id,String content){
-		ClientResource cr=new ClientResource(uri_upload+"/"+id+ "?uploadType=media");
-		try{
-			ChallengeResponse chr = new ChallengeResponse(
-					ChallengeScheme.HTTP_OAUTH_BEARER);
+
+	public boolean updateFileContent(String id, String content) {
+		ClientResource cr = new ClientResource(uri_upload + "/" + id + "?uploadType=media");
+		try {
+			ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
 			chr.setRawValue(access_token);
 			cr.setChallengeResponse(chr);
-			StringRepresentation rep=new StringRepresentation(content,MediaType.IMAGE_ALL);
+			StringRepresentation rep = new StringRepresentation(content, MediaType.IMAGE_ALL);
 			cr.put(rep);
 		} catch (ResourceException re) {
 			log.warning("Error when updating the content of file: " + id);

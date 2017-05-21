@@ -44,6 +44,14 @@
 	margin: -1px;
 }
 
+#editor{
+	
+}
+
+.avpw .avpw_main_mode {
+	position: fixed;
+}
+
 /* own code */
 .caption{
 	font-size: 1.25rem;

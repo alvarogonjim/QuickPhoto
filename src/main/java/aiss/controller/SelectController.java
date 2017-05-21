@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
 import aiss.model.google.drive.Parent;
+import aiss.model.google.drive.about.About;
 import aiss.model.resources.GoogleDriveResource;
 
 public class SelectController extends HttpServlet {
@@ -22,9 +23,16 @@ public class SelectController extends HttpServlet {
 		String accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
 		if(accessToken!=null && !"".equals(accessToken)){
 			GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
-			
 			Files files_0 = gdResource.getFiles(); //Files 
 			List<FileItem> files = new ArrayList<FileItem>(); //Array para rellenar y enviar al jsp
+			
+			//About user
+			About a = gdResource.getAbout();
+			req.setAttribute("a_name", a.getName());
+			req.setAttribute("a_avatar", a.getUser().getPicture());
+			req.setAttribute("a_bytesTotal", a.getQuotaBytesTotal());
+			req.setAttribute("a_bytesUsed", a.getQuotaBytesUsedAggregate());
+			//
 
 			String QPfolderID = createFolder("QuickPhoto", gdResource);
 			System.out.println("FOLDER ID: " + QPfolderID);

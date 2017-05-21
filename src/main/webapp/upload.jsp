@@ -16,19 +16,15 @@
                   </p>
                </div>
                <div class="card-action">
-                  <span class="upload_t"> 16GB totales</span>
+                  <span class="upload_t"> <span id="total">16GB</span> totales</span>
                   <div class="progress  cyan lighten-4">
-                     <div class="determinate red" style="width: 70%"></div>
                      <div class="determinate upload" style="width: 60%"></div>
                   </div>
                   <div class="chip upload_t">
-                     9,6GB<span style="color: rgba(0, 0, 0, 0.87);"> Archivos</span>
-                  </div>
-                  <div class="chip red-text">
-                     1,6GB<span style="color: rgba(0, 0, 0, 0.87);"> QuickPhoto</span>
+                    <span id="used">16GB</span><span style="color: rgba(0, 0, 0, 0.87);"> Usados</span>
                   </div>
                   <div class="chip cyan-text">
-                     4,8GB<span style="color: rgba(0, 0, 0, 0.87);"> Libre</span>
+                     <span id="free">16GB</span><span style="color: rgba(0, 0, 0, 0.87);"> Libres</span>
                   </div>
                </div>
             </div>
@@ -71,4 +67,11 @@
       </div>
    </div>
 </main>
+<script>
+function formatBytes(a,b){if(0==a)return"0 Bytes";var c=1e3,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
+document.getElementById("total").innerHTML = formatBytes(${a_bytesTotal}, 0);
+document.getElementById("used").innerHTML = formatBytes(${a_bytesUsed}, 2);
+document.getElementById("free").innerHTML = formatBytes(${a_bytesTotal - a_bytesUsed}, 2);
+document.getElementById("percent").style = "width: "+${a_bytesUsed*100/a_bytesTotal}+"%;";
+</script>
 <%@include file="includes/app/footer.jsp"%>

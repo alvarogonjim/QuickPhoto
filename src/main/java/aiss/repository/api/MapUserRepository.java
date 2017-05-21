@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+
 import org.w3c.dom.ls.LSOutput;
 
 import aiss.model.api.User;
@@ -34,7 +37,7 @@ public class MapUserRepository implements UserRepository{
 		User u1 = new User("Alvaro","Gonzalez","alvarogonjim95@gmail.com");
 		addUser(u1);
 		
-		User u2 = new User("Francisco","Piña","franmpina@gmail.com");
+		User u2 = new User("Angel","Lozano","angelxwars@gmail.com");
 		addUser(u2);
 		
 		User u3 = new User("Cristian","Osorno","crisos@gmail.com");
@@ -45,6 +48,9 @@ public class MapUserRepository implements UserRepository{
 		
 		User u5 = new User("Daniel","Sanchez","dansanchez@gmail.com");
 		addUser(u5);
+		
+		User u6 = new User("Sergio","Ortiz","seblue96@gmail.com");
+		addUser(u6);
 		
 	
 	}
@@ -57,7 +63,8 @@ public class MapUserRepository implements UserRepository{
 		
 	}
 
-	@Override
+	@GET
+	@Produces("application/json")
 	public Collection<User> getAllUsers() {
 		return userMap.values();
 	}

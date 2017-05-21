@@ -57,6 +57,9 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
     var featherEditor = new Aviary.Feather({
         apiKey: '1234567',
         appendTo: 'editor',
+        onLoad: function(){
+        	document.getElementById("avpw_controls").style = "position: fixed;";
+        },
         language: 'es',
         onSave: function(imageID, newURL) {
             var img = document.getElementById(imageID);
@@ -64,8 +67,8 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
             document.getElementById("idEdited").value = imageID;
             document.getElementById("imgEdited").value = newURL;
             featherEditor.close();
-            Materialize.toast('Imagen guardada correctamente', 6000);
-            Materialize.toast('Comprimiendo...', 6000);
+            Materialize.toast('<i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Imagen guardada correctamente', 6000);
+            Materialize.toast('<i class="fa fa-compress fa-lg" aria-hidden="true"></i> Comprimiendo...', 6000);
             document.getElementById("toCompress").submit();
           
         }

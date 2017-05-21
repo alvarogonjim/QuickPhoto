@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.google.drive.Files;
+import aiss.model.google.drive.about.About;
 import aiss.model.resources.GoogleDriveResource;
 
 public class DriveFileDelete extends HttpServlet {
@@ -20,6 +21,15 @@ public class DriveFileDelete extends HttpServlet {
 			String accessToken=(String)req.getSession().getAttribute("GoogleDrive-token");
 			if(accessToken!=null && !"".equals(accessToken)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
+				
+				//About user
+				About a = gdResource.getAbout();
+				req.setAttribute("a_name", a.getName());
+				req.setAttribute("a_avatar", a.getUser().getPicture());
+				req.setAttribute("a_bytesTotal", a.getQuotaBytesTotal());
+				req.setAttribute("a_bytesUsed", a.getQuotaBytesUsedAggregate());
+				//
+				
 				gdResource.deleteFile(id);
 				log.info("File with id '"+id+"' deleted!");
 				req.getRequestDispatcher("/select").forward(req,resp);

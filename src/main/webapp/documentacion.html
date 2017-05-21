@@ -8,6 +8,7 @@
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      
    </head>
    <body>
       <nav class="light-blue lighten-1" role="navigation">
@@ -31,8 +32,8 @@
             <br><br>
             <h1 class="header orange-text"><i class="fa fa-globe" aria-hidden="true"></i> API Reference</h1>
             <div class="row">
-               <p class=" col s12 light">The Tinify API allows you to compress and optimize JPEG and PNG images. It is designed as a REST service. This page describes the raw HTTP API. We also maintain client libraries in various languages that make it very easy to interact with the Tinify API.
-<br><div class="chip">The API is hosted at <b>api.tinify.com</b></div></p>
+               <p class=" col s12 light">La API de QuickPhoto te permite crear, actualizar y borrar usuarios. Está diseñado como un servicio Rest. Esta página describe la API para peticiones HTTP. 
+<br><div class="chip">La API está alojada en <span style="font-weight: bolder;" id="apiHost">/api</span></div></p>
             </div>
          </div>
       </div>
@@ -42,7 +43,7 @@
         <div class="col s12 m6">
           <div class="card grey lighten-3">
             <div class="card-content grey-text text-darken-4">
-              <span class="card-title">Acciones</span>
+              <span class="card-title">Peticiones</span>
              <table>
         <thead>
           <tr>
@@ -138,6 +139,9 @@
          </div>
       </footer>
       <!--  Scripts-->
+      <script>
+      document.getElementById("apiHost").innerHTML = window.location.hostname+"/api";
+      </script>
       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="js/materialize.js"></script>
       <script src="js/init.js"></script>

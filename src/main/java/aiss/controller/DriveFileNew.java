@@ -14,6 +14,7 @@ import org.jboss.resteasy.util.Base64;
 
 import aiss.model.google.drive.FileItem;
 import aiss.model.google.drive.Files;
+import aiss.model.google.drive.about.About;
 import aiss.model.resources.GoogleDriveResource;
 
 public class DriveFileNew extends HttpServlet {
@@ -24,6 +25,15 @@ public class DriveFileNew extends HttpServlet {
 			
 			if(accessToken!=null && !"".equals(accessToken)){
 				GoogleDriveResource gdResource=new GoogleDriveResource(accessToken);
+				
+				//About user
+				About a = gdResource.getAbout();
+				req.setAttribute("a_name", a.getName());
+				req.setAttribute("a_avatar", a.getUser().getPicture());
+				req.setAttribute("a_bytesTotal", a.getQuotaBytesTotal());
+				req.setAttribute("a_bytesUsed", a.getQuotaBytesUsedAggregate());
+				//
+				
 				String files_0 = gdResource.getFiles().getItems().get(0).getId();
 				String parentId = createFolder("QuickPhoto", gdResource);
 				gdResource.moveFile(files_0, parentId);

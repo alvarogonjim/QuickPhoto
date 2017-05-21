@@ -27,16 +27,16 @@
   */
  function handleAuthResult(authResult) {
      var authButton = document.getElementById('authorizeButton');
-     var filePicker = document.getElementById('filePicker');
-     var uploadButton = document.getElementById('uploadButton');
+//     var filePicker = document.getElementById('filePicker');
+//     var uploadButton = document.getElementById('uploadButton');
      authButton.style.display = 'none';
-     filePicker.style.display = 'none';
-     uploadButton.style.display = 'none';
+//     filePicker.style.display = 'none';
+//     uploadButton.style.display = 'none';
      if (authResult && !authResult.error) {
          // Access token has been successfully retrieved, requests can be sent to the API.
-         filePicker.style.display = 'block';
-         filePicker.onchange = loadImageFile;
-         uploadButton.onclick = newUploadFile;
+//         filePicker.style.display = 'block';
+         uploadButton.onclick = getBase64FromImageUrl(url, mime);
+        // uploadButton.onclick = newUploadFile;
      } else {
          // No access token could be retrieved, show the button to start the authorization flow.
          authButton.style.display = 'block';
@@ -113,7 +113,34 @@
      document.getElementById("loading").style = "";
      request.execute(callback);
  }
+ 
+ function getBase64FromImageUrl(url, type, evt) {
+	   var img = new Image();
 
+	   img.setAttribute('crossOrigin', 'anonymous');
+
+	   img.onload = function () {
+	       var canvas = document.createElement("canvas");
+	       canvas.width =this.width;
+	       canvas.height =this.height;
+
+	       var ctx = canvas.getContext("2d");
+	       ctx.drawImage(this, 0, 0);
+
+	       var dataURL = canvas.toDataURL(type);
+
+	  //     var url= dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	   };
+
+	   var file = dataURL;
+	   var reader = new FileReader();
+	   reader.file = file;
+	     reader.onload = onImageReaderLoad;
+	     reader.readAsDataURL(file);
+	     reader.
+	     getBase64FromImageUrl
+	}
+/*
  function loadImageFile(evt) {
      var file = evt.target.files[0];
      var reader = new FileReader();
@@ -121,6 +148,7 @@
      reader.onload = onImageReaderLoad;
      reader.readAsDataURL(file);
  }
+ */
 
  function onImageReaderLoad(evt) {
      var file = this.file;
