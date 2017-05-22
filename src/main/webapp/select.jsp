@@ -57,9 +57,7 @@ Y CUANDO LE DAMOS A GUARDAR DEVUELVE LA IMAGEN EDITADA A LA PAGINA -->
     var featherEditor = new Aviary.Feather({
         apiKey: '1234567',
         appendTo: 'editor',
-        onLoad: function(){
-        	document.getElementById("avpw_controls").style = "position: fixed;";
-        },
+
         language: 'es',
         onSave: function(imageID, newURL) {
             var img = document.getElementById(imageID);
