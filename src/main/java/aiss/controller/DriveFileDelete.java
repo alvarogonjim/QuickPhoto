@@ -25,7 +25,7 @@ public class DriveFileDelete extends HttpServlet {
 				//About user
 				About a = gdResource.getAbout();
 				req.setAttribute("a_name", a.getName());
-				req.setAttribute("a_avatar", a.getUser().getPicture());
+				req.setAttribute("a_avatar", a.getUser().getPicture().getUrl());
 				req.setAttribute("a_bytesTotal", a.getQuotaBytesTotal());
 				req.setAttribute("a_bytesUsed", a.getQuotaBytesUsedAggregate());
 				//
