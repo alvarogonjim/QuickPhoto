@@ -1,29 +1,28 @@
-# README #
+# QuickPhoto #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+QuickPhoto is a Web Application which integrates Google Drive, Aviary SDK and Tiny PNG. The idea of the project is you can edit your pictures from Google Drive with a powerful editor (Aviary SDK) and you can optimize and compress it with Tiny PNG.
+If you want to try this application just go to http://quickphoto-166218.appspot.com/ 
 
-### What is this repository for? ###
+### The Team ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Sergio Ortiz Aguilar  - seblue96@gmail.com
+* José Angel Lozano Pineda - angelxwars@gmail.com
+* Álvaro González Jiménez - alvarogonjim95@gmail.com
 
-### How do I get set up? ###
+### Do you want to contribute? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+QuickPhoto contains a license (Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)) so you are able to: 
 
-### Contribution guidelines ###
+* Share: copy and redistribute the material in any medium or format
 
-* Writing tests
-* Code review
-* Other guidelines
+* Adapt: remix, transform, and build upon the material
 
-### Who do I talk to? ###
+Under the following terms:
 
-* Repo owner or admin
-* Other community or team contact
+* Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+* NonCommercial: You may not use the material for commercial purposes.
+
+* ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+
